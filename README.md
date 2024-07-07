@@ -225,10 +225,15 @@ Accessing the Application
 Once the containers are up and running, access the application via:
 
 API: http://localhost:9000
+
 Client: http://localhost:3000
+
 Nginx Proxy: http://localhost or https://localhost
+
 REFRENCE IMAGES!!!
-https://imgur.com/hjh6PSD
+(Processes)
+https://imgur.com/hjh6PSD 
+(Application running)
 https://imgur.com/jEBJKnv
 
 
