@@ -1,27 +1,41 @@
-# Challenge
-
-## Overview
-
+Challenge
+Overview
 This repository contains a simple web application with two main components:
 
-1. **API**: Written in Laravel PHP, the API serves as the backend for the application and listens on port 8000.
-2. **Client**: Developed using Nuxt.js, the client is the frontend of the application and listens on port 3000.
+API: Written in Laravel PHP, the API serves as the backend for the application and listens on port 8000.
+Client: Developed using Nuxt.js, the client is the frontend of the application and listens on port 3000.
+Prerequisites
+Docker
+Docker Compose
+Environment Variables
+API Directory
+Check the .env file in the API directory. It should contain the necessary credentials to connect to the database.
 
-### Environment Variables
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=bookapi
+DB_USERNAME=app
+DB_PASSWORD=password
+end
+Client Directory
+Check the .env file in the Client directory. It should contain the connection string to connect to the API.
+VITE_API_URL=http://api:8000
+Installation
+Step 1: Clone the Repository
 
-- **API Directory**: Take a look at the `.env` file in the API directory. It should contain the necessary credentials to connect to the database.
+git clone https://github.com/only-for-testing/Challenge
+cd challenge
+Step 2: API Setup
+Navigate to the API directory and create the Dockerfile:
 
-  ```env
-    DB_CONNECTION=mysql
-    DB_HOST=db
-    DB_PORT=3306
-    DB_DATABASE=bookapi
-    DB_USERNAME=app
-    DB_PASSWORD=password
-  ```
+cd API
+nano Dockerfile
+Add the following content to the Dockerfile:
 
-- **Client Directory**: Check the `.env` file in the Client directory. It should contain the connection string to connect to the API.
+FROM php:8.1-fpm
 
+<<<<<<< HEAD
   ```env
     VITE_API_URL=http://api:8000
   ```
@@ -60,6 +74,23 @@ WORKDIR varwwwhtml
 
 # Copy application files
 COPY . varwwwhtml
+=======
+# Install dependencies
+RUN apt-get update \
+    && apt-get install -y \
+       curl \
+       git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Composer globally
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy application files
+COPY . /var/www/html
+>>>>>>> 442feff538fb79ae3b9f59921e3edaaa2ad4ba6f
 
 # Install PHP dependencies using Composer
 RUN composer install --no-interaction --optimize-autoloader
@@ -68,6 +99,7 @@ RUN composer install --no-interaction --optimize-autoloader
 # EXPOSE 8000
 
 # Start PHP-FPM server
+<<<<<<< HEAD
 CMD [php-fpm]
 
 
@@ -76,6 +108,16 @@ CMD [php-fpm]
   then nano dockerfile again
    then put this content in it
      GNU nano 8.0                                                                                      
+=======
+CMD ["php-fpm"]
+Step 3: Client Setup
+Navigate to the Client directory and create the Dockerfile:
+
+cd ../Client
+nano Dockerfile
+Add the following content to the Dockerfile:
+
+>>>>>>> 442feff538fb79ae3b9f59921e3edaaa2ad4ba6f
 # Client Dockerfile
 
 # Use an official Node.js runtime as a parent image
@@ -101,6 +143,7 @@ EXPOSE 3000
 
 # Define the command to run the application
 CMD ["npm", "start"]
+<<<<<<< HEAD
 
 then cd ..
 make sure you are in the challenge root file because you have the most important 2 steps to make
@@ -109,6 +152,15 @@ and nginx.conf file
 
 nano docker-compose.yml 
 then put this content inside the file 
+=======
+Step 4: Docker Compose and Nginx Setup
+Navigate to the root directory and create the Docker Compose and Nginx configuration files:
+
+cd ..
+nano docker-compose.yml
+Add the following content to docker-compose.yml:
+
+>>>>>>> 442feff538fb79ae3b9f59921e3edaaa2ad4ba6f
 version: '2.4'
 
 services:
@@ -150,6 +202,7 @@ services:
       - ./nginx-selfsigned.crt:/etc/nginx/nginx-selfsigned.crt
       - ./nginx-selfsigned.key:/etc/nginx/nginx-selfsigned.key
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+<<<<<<< HEAD
 
 
 
@@ -158,6 +211,13 @@ services:
 then save and quit then
 nano nginx.conf
 and place this content within it
+=======
+Create the Nginx configuration file:
+
+nano nginx.conf
+Add the following content to nginx.conf:
+
+>>>>>>> 442feff538fb79ae3b9f59921e3edaaa2ad4ba6f
 events {
     worker_connections  1024;
 }
@@ -207,6 +267,7 @@ http {
         }
     }
 }
+<<<<<<< HEAD
 
 
 save and quit then ahead run the following commands accordingly and dont mess up 
@@ -222,3 +283,22 @@ save and quit then ahead run the following commands accordingly and dont mess up
  like right here
 
  and congrats you have done all the steps and you finished your task/challenge
+=======
+Step 5: Build and Run the Application
+Build and run the Docker containers:
+
+docker-compose build
+docker-compose up -d
+Verify the application is running:
+
+docker-compose ps
+Accessing the Application
+Once the containers are up and running, access the application via:
+
+API: http://localhost:9000
+Client: http://localhost:3000
+Nginx Proxy: http://localhost or https://localhost
+REFRENCE IMAGES!!!
+Screenshot of the application
+Screenshot of the application
+>>>>>>> 442feff538fb79ae3b9f59921e3edaaa2ad4ba6f
