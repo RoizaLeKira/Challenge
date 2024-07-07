@@ -228,8 +228,8 @@ API: http://localhost:9000
 Client: http://localhost:3000
 Nginx Proxy: http://localhost or https://localhost
 REFRENCE IMAGES!!!
-![Screenshot of the application](https://imgur.com/hjh6PSD)
-![Screenshot of the application](https://imgur.com/jEBJKnv)
+https://imgur.com/hjh6PSD
+https://imgur.com/jEBJKnv
 
 
 
